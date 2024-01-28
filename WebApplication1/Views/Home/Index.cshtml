@@ -1,0 +1,33 @@
+﻿@model WebApplication1.Models.PriceQuotationModel
+
+@{
+    ViewData["Title"] = "Price Quotation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Price Quotation</h1>
+
+<form asp-action="Calculate">
+    <div>
+        <label for="SalesPrice">Sales Price:
+            <input type="text" asp-for="SalesPrice" />
+            <span asp-validation-for="SalesPrice"></span>
+        </label>
+        <label for="DiscountPercent">Discount Percent:
+            <input type="text" asp-for="DiscountPercent" />
+            <span asp-validation-for="DiscountPercent"></span>
+        </label>
+
+    </div>
+    <div class="button-container">
+    @if (Model != null)
+    {
+            <p>Discount Amount: @Model.DiscountAmount.ToString("C")</p>
+            <p>Total: @Model.Total.ToString("C")</p>
+    }
+   
+        <button type="submit">Calculate</button>
+        <a asp-action="Clear">Clear</a>
+    </div>
+</form>
+
